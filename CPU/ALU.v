@@ -10,7 +10,7 @@ module ALU(ReadData1, aluMuxResult, ALUControl, zero, ALUResult);
             4'b0010: ALUResult <= ReadData1 + aluMuxResult; //ADDI, LW, SW
             4'b0110: ALUResult <= ReadData1 - aluMuxResult; //SUB
             4'b0100: ALUResult <= ReadData1 ^ aluMuxResult; //XOR 
-            4'b0111: ALUResult <= ReadData1 << aluMuxResult; // SRL
+            4'b0111: ALUResult <= ReadData1 << aluMuxResult; //SRL
             
             default: ALUResult = 32'b0;
         endcase
