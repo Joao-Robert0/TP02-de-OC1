@@ -11,7 +11,7 @@ module RegisterModule (clk, ReadRegister1, ReadRegister2, WriteRegister, ReadDat
     integer i;
 
     initial begin
-        $readmemb("Entradas/registradores.txt", register);
+        $readmemb("../entrada/registradores.txt", register);
     end
 
 

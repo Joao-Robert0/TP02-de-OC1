@@ -7,13 +7,13 @@ module ALU(ReadData1, aluMuxResult, ALUControl, zero, ALUResult);
 
     always @(*) begin
         case (ALUControl)
-            4'b0000: ALUResult <= ReadData1 & aluMuxResult; //AND
-            4'b0001: ALUResult <= ReadData1 | aluMuxResult; //OR
-            4'b0010: ALUResult <= ReadData1 + aluMuxResult; //ADD
+ //           4'b0000: ALUResult <= ReadData1 & aluMuxResult; //AND 
+ //           4'b0001: ALUResult <= ReadData1 | aluMuxResult; //OR
+            4'b0010: ALUResult <= ReadData1 + aluMuxResult; //ADDI, LW, SW
             4'b0110: ALUResult <= ReadData1 - aluMuxResult; //SUB
-            4'b1111: ALUResult <= ReadData1 ^ aluMuxResult //XOR inserir código correto
-            4'b1110: ALUResult <= ReadData1 << aluMuxResult // SRL inserir código correto 
-                    
+            4'b0100: ALUResult <= ReadData1 ^ aluMuxResult; //XOR inserir código correto
+            4'b0111: ALUResult <= ReadData1 << aluMuxResult; // SRL inserir código correto 
+            
             default: ALUResult = 32'b0;
         endcase
         if(ALUResult == 0) zero = 1;

@@ -8,10 +8,9 @@ module DataMemory(clk, ALUResult, WriteData, ReadData, MemWrite, MemRead);
     output [31:0]ReadData;
     reg [31:0]Memory[0:31];
 
-    assign ReadData = MemRead ? Memory[ALUResult>>3] : 0;  //Não estou seguro com esse shift right aí
-
+    assign ReadData = MemRead ? Memory[ALUResult>>2] : 0; 
     initial begin
-		$readmemb("entrada/dataMemory.txt", Memory);
+		$readmemb("../entrada/memoriadados.txt", Memory);
 	end
 
     always @(posedge clk) begin

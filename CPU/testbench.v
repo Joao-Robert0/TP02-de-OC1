@@ -1,10 +1,10 @@
 `timescale 10ns / 100ps
-`include "connections.v"
+`include "Connections.v"
 
 module testbench ();
   reg clk, reset;
-  wire [63:0]address;
-  wire [63:0]ALUResult;
+  wire [31:0]address;
+  wire [31:0]ALUResult;
   wire [31:0]instruction;
   wire [4:0]ReadRegister1;
   wire [4:0]ReadRegister2;
