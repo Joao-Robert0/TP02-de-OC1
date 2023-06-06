@@ -4,7 +4,7 @@ module InstructionMemory (PC, instruction);
 	reg [31:0]ROM[0:31]; 
     
 	initial begin
-		$readmemb("../entradas/codigo.txt", ROM);
+		$readmemb("../entrada/codigo.txt", ROM);
 	end
 
     assign instruction = ROM[PC>>2];

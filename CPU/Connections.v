@@ -21,7 +21,6 @@ module datapath (clk, reset, instruction);
     wire zero;
     wire [31:0]PCQuatro;
     wire [31:0]PCJump;
-    //wire [31:0]shiftResult;
     wire [3:0]ALUControl; 
     wire BranchResult;
     output wire [31:0]instruction;
@@ -31,16 +30,15 @@ module datapath (clk, reset, instruction);
     assign BranchResult = zero & Branch; //Check if there is a branch
     //PC Modules
     Adder pcMuxAdd(.a(PC), .b(32'd4), .c(PCQuatro)); //PC + 32'd4 = PC + 4
-    Adder aluPCImm(.a(PC),.b(imediato),.c(PCJump)); // PC + ShiftedLeft ImmGen = Jump Address
+    Adder aluPCImm(.a(PC),.b(imediato),.c(PCJump)); // PC + ImmGen = Endereço desvio
     Multiplexador PCMux(.inputWire(BranchResult), .choice1(PCQuatro), .choice2(PCJump), .result(address));
     PC programCounter(.clk(clk), .reset(reset), .PC(PC), .address(address));
     // Instruction Memory
     InstructionMemory InstructionMemory (.PC(PC), .instruction(instruction));
     // ImmediateGenerator Modules
     ImmediateGenerator ImmGen (.instruction(instruction), .imediato(imediato));
-    //shiftLeft shift(.ImmGenResult(ImmGenResult), .ImmGenShiftLeft(shiftResult));
     // Registers Modules
-    RegisterModule registerM(.clk(clk),.ReadRegister1(instruction[19:15]), .ReadRegister2(instruction[24:20]), .WriteRegister(instruction[11:7]), .ReadData1(ReadData1), .ReadData2(ReadData2), .WriteSignal(RegWrite),.WriteData(WriteData), .Instruction(instruction));
+    Registers registerM(.clk(clk),.ReadRegister1(instruction[19:15]), .ReadRegister2(instruction[24:20]), .WriteRegister(instruction[11:7]), .ReadData1(ReadData1), .ReadData2(ReadData2), .WriteSignal(RegWrite),.WriteData(WriteData), .Instruction(instruction));
     // ALU Modules
     Multiplexador muxRegToAlu(.inputWire(ALUSrc),.choice1(ReadData2),.choice2(imediato),.result(aluMuxResult));
     ALUCtrl AluCtrl (.Funct7(instruction[31:25]), .Funct3(instruction[14:12]), .ALUOperation(ALUOperation), .ALUControl(ALUControl));

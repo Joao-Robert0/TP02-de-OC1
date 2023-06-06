@@ -1,4 +1,4 @@
-module RegisterModule (clk, ReadRegister1, ReadRegister2, WriteRegister, ReadData1, ReadData2, WriteSignal, WriteData, Instruction);
+module Registers (clk, ReadRegister1, ReadRegister2, WriteRegister, ReadData1, ReadData2, WriteSignal, WriteData, Instruction);
 
     input wire WriteSignal, clk;
   	input wire [4:0]ReadRegister1;

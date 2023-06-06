@@ -14,8 +14,6 @@ module ALUCtrl(Funct7, Funct3, ALUOperation, ALUControl);
                     3'b000: ALUControl <= 4'b0010; //ADD
                     3'b100: ALUControl <= 4'b0100; // XOR
                     3'b101: ALUControl <= 4'b0111; // SRL
-//                    3'b110: ALUControl <= 4'b0001; //OR
-//                    3'b111: ALUControl <= 4'b0000; //AND
                     default: ALUControl <= 4'b1111; 
                 endcase
                 end
